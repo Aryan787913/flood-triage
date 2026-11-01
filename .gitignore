@@ -1,0 +1,12 @@
+data
+data/
+splits
+splits/
+results/emb/
+*.jpg
+*.jpeg
+*.png.tmp
+__pycache__/
+.pytest_cache/
+*.zip
+.env

@@ -1,0 +1,9 @@
+{
+ "zero_shot|baseline": 0.3,
+ "zero_shot|baseline+abstain(p<t)": 0.3,
+ "zero_shot|spark": 0.3,
+ "zero_shot|arbitrate: spark overrides when |diff|>=2": 0.3,
+ "zero_shot|arbitrate: spark when baseline unsure (p<t)": 0.7,
+ "zero_shot|agree-or-abstain (|diff|<=1 -> spark)": 0.3,
+ "zero_shot|spark, else baseline if confident (p>=t)": 0.3
+}
