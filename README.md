@@ -7,6 +7,9 @@ It is decision support for the people who already run civic flood portals (for e
 
 ![architecture](docs/architecture.png)
 
+
+**Demo video (2:13):** https://youtu.be/f3huyJmgsEg
+
 ## Results (STURM-FloodDepth test split, 340 crops, scored once)
 
 | Method (test, n=340) | Macro-F1 | Accuracy | Coverage | Acc. on answered | Off by 2+ levels | Under-called by 2+ |
