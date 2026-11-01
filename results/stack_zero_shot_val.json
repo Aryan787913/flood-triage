@@ -1,0 +1,18 @@
+{
+ "spark": [
+  "zero_shot"
+ ],
+ "C": 3,
+ "cv_val": {
+  "n": 335,
+  "coverage": 1.0,
+  "accuracy_all": 0.6776119402985075,
+  "selective_accuracy": 0.6776119402985075,
+  "macro_f1_all": 0.6675025457190868,
+  "macro_f1_answered": 0.6675025457190868,
+  "off_by_2plus": 10,
+  "off_by_2plus_rate": 0.029850746268656716,
+  "mae_levels": 0.3611940298507463,
+  "under_by_2plus": 5
+ }
+}

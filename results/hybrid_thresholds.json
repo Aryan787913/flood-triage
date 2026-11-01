@@ -5,5 +5,12 @@
  "zero_shot|arbitrate: spark overrides when |diff|>=2": 0.3,
  "zero_shot|arbitrate: spark when baseline unsure (p<t)": 0.7,
  "zero_shot|agree-or-abstain (|diff|<=1 -> spark)": 0.3,
- "zero_shot|spark, else baseline if confident (p>=t)": 0.3
+ "zero_shot|spark, else baseline if confident (p>=t)": 0.3,
+ "fewshot|baseline": 0.3,
+ "fewshot|baseline+abstain(p<t)": 0.3,
+ "fewshot|spark": 0.3,
+ "fewshot|arbitrate: spark overrides when |diff|>=2": 0.3,
+ "fewshot|arbitrate: spark when baseline unsure (p<t)": 0.7,
+ "fewshot|agree-or-abstain (|diff|<=1 -> spark)": 0.3,
+ "fewshot|spark, else baseline if confident (p>=t)": 0.45
 }

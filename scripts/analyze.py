@@ -8,8 +8,10 @@ def load(f): return [json.loads(l) for l in open(f) if l.strip()]
 
 def spark_preds(rows, mode="first"):
     """Group by path; mode first = sample 0; vote = majority over samples, ties/disagreement -> None."""
-    g = defaultdict(list)
-    for r in rows: g[r["path"]].append(r)
+    g = defaultdict(list); seen = set()
+    for r in rows:
+        if (r["path"], r["sample"]) in seen: continue   # resumed runs: keep first record per (path, sample)
+        seen.add((r["path"], r["sample"])); g[r["path"]].append(r)
     out = {}
     for p, rs in g.items():
         rs.sort(key=lambda r: r["sample"])

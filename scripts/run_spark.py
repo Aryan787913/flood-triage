@@ -38,7 +38,9 @@ def work(j):
     return {"path": p, "label": y, "sample": s, "prompt": a.prompt, **r, "parsed": pr}
 
 with open(a.out, "a") as f, cf.ThreadPoolExecutor(a.workers) as ex:
-    for i, rec in enumerate(ex.map(work, jobs)):
+    futs = [ex.submit(work, j) for j in jobs]
+    for i, fu in enumerate(cf.as_completed(futs)):
+        rec = fu.result()
         f.write(json.dumps(rec) + "\n"); f.flush()
         if i % 20 == 0: print(i, rec["label"], rec["parsed"]["level"], rec["latency_s"], flush=True)
 print("done")

@@ -1,0 +1,8 @@
+{
+ "chosen_on": "val (335 crops), 1 Nov 2026, before any test scoring of these configs",
+ "spark": "fewshot (structured prompt with official level definitions + 5 train reference crops), 3 reads, majority vote; no majority -> can't tell",
+ "hybrid_spark": "fewshot",
+ "hybrid_rule": "arbitrate: spark when baseline unsure (p<t)",
+ "hybrid_t": 0.7,
+ "why": "val macro-F1: baseline 0.604, Spark zero-shot 0.548, structured 0.512 (SC 0.524), few-shot 0.559, few-shot x3 0.591, hybrid 0.665 (off-by-2+ 24 -> 11). Learned stacker CV-on-val 0.676 is within noise of the rule; the rule is kept as primary because it is explainable to a ward officer."
+}

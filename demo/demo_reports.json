@@ -1,0 +1,396 @@
+{
+ "ward": "Demo ward (synthetic)",
+ "note": "Locations, times and citizen estimates are SYNTHETIC. Photos: STURM-FloodDepth test split (CC BY 4.0).",
+ "prompt": "structured",
+ "reports": [
+  {
+   "id": "R01",
+   "path": "Level0/car-469-Level0_4.jpg",
+   "true_level": 0,
+   "place": "Demo point A",
+   "lat": 28.460214518342507,
+   "lon": 77.03699061761735,
+   "minute": 1103,
+   "self_report": "ankle",
+   "level": null,
+   "votes": [
+    0,
+    null,
+    null
+   ],
+   "confidence": "medium",
+   "part": "none",
+   "evidence": "Red car on dry patterned pavement no flood water visible",
+   "reason": "readings disagree (0, None, None)",
+   "loc": {
+    "box": null,
+    "waterline": null
+   },
+   "hash": 9257340926819811815,
+   "check": "unverified",
+   "dup_of": null
+  },
+  {
+   "id": "R02",
+   "path": "Level0/car-916-Level0_1.jpg",
+   "true_level": 0,
+   "place": "Demo point B",
+   "lat": 28.43514740737375,
+   "lon": 77.01087210100997,
+   "minute": 1091,
+   "self_report": "ankle",
+   "level": 1,
+   "votes": [
+    null,
+    1,
+    1
+   ],
+   "confidence": "medium",
+   "part": "tyre",
+   "evidence": "muddy water covering lower tyre sidewall below half height",
+   "reason": null,
+   "loc": {
+    "box": [
+     0.09,
+     0.125,
+     0.965,
+     0.795
+    ],
+    "waterline": null
+   },
+   "hash": 13839406071314907136,
+   "check": "consistent",
+   "dup_of": null
+  },
+  {
+   "id": "R03",
+   "path": "Level1/car-1798-Level1_1.jpg",
+   "true_level": 1,
+   "place": "Demo point C",
+   "lat": 28.461821610514658,
+   "lon": 77.057830439361,
+   "minute": 1161,
+   "self_report": "ankle",
+   "level": 1,
+   "votes": [
+    1,
+    1,
+    1
+   ],
+   "confidence": "high",
+   "part": "tyre",
+   "evidence": "shallow water meets below half front tyre chassis dry",
+   "reason": null,
+   "loc": {
+    "box": [
+     0.014,
+     0.038,
+     0.922,
+     0.902
+    ],
+    "waterline": [
+     0.022,
+     0.862,
+     0.895,
+     0.81
+    ]
+   },
+   "hash": 8392405128795195343,
+   "check": "consistent",
+   "dup_of": null
+  },
+  {
+   "id": "R04",
+   "path": "Level1/car2-22-Level1_1.jpg",
+   "true_level": 1,
+   "place": "Demo point D",
+   "lat": 28.43201282018219,
+   "lon": 77.0651754736639,
+   "minute": 1137,
+   "self_report": "knee",
+   "level": 1,
+   "votes": [
+    1,
+    1,
+    1
+   ],
+   "confidence": "medium",
+   "part": "lower tyre",
+   "evidence": "Audi SUV in flood, water below mid-tyre with splashes",
+   "reason": null,
+   "loc": {
+    "box": [
+     0.092,
+     0.152,
+     0.914,
+     0.909
+    ],
+    "waterline": [
+     0.129,
+     0.782,
+     0.904,
+     0.758
+    ]
+   },
+   "hash": 11008986923380474879,
+   "check": "photo shows shallower water",
+   "dup_of": null
+  },
+  {
+   "id": "R05",
+   "path": "Level2/car-1024-Level2_3.jpg",
+   "true_level": 2,
+   "place": "Demo point E",
+   "lat": 28.46873535201203,
+   "lon": 77.03584501636628,
+   "minute": 1100,
+   "self_report": "below knee",
+   "level": null,
+   "votes": [
+    1,
+    null,
+    2
+   ],
+   "confidence": "medium",
+   "part": "tyre",
+   "evidence": "brown floodwater below half rear tyre, doors dry",
+   "reason": "readings disagree (1, None, 2)",
+   "loc": {
+    "box": null,
+    "waterline": null
+   },
+   "hash": 4016008718196457600,
+   "check": "unverified",
+   "dup_of": null
+  },
+  {
+   "id": "R06",
+   "path": "Level2/car-1022-Level2_1.jpg",
+   "true_level": 2,
+   "place": "Demo point F",
+   "lat": 28.46688770709112,
+   "lon": 77.053136130028,
+   "minute": 1088,
+   "self_report": "knee",
+   "level": 3,
+   "votes": [
+    null,
+    3,
+    3
+   ],
+   "confidence": "medium",
+   "part": "door",
+   "evidence": "water fully covers wheels reaches lower door with splash",
+   "reason": null,
+   "loc": {
+    "box": [
+     0.132,
+     0.185,
+     0.882,
+     0.845
+    ],
+    "waterline": [
+     0.142,
+     0.642,
+     0.868,
+     0.618
+    ]
+   },
+   "hash": 17131003454660607,
+   "check": "consistent",
+   "dup_of": null
+  },
+  {
+   "id": "R07",
+   "path": "Level3/car-1690-Level3_1.jpg",
+   "true_level": 3,
+   "place": "Demo point G",
+   "lat": 28.43307306631013,
+   "lon": 77.00181666102384,
+   "minute": 1110,
+   "self_report": "knee",
+   "level": 3,
+   "votes": [
+    3,
+    3,
+    3
+   ],
+   "confidence": "medium",
+   "part": "door",
+   "evidence": "silver sedan tyres submerged water covering lower doors",
+   "reason": null,
+   "loc": {
+    "box": [
+     0.095,
+     0.135,
+     0.975,
+     0.875
+    ],
+    "waterline": [
+     0.085,
+     0.755,
+     0.97,
+     0.795
+    ]
+   },
+   "hash": 18373089318564708576,
+   "check": "consistent",
+   "dup_of": null
+  },
+  {
+   "id": "R08",
+   "path": "Level3/car-1435-Level3_1.jpg",
+   "true_level": 3,
+   "place": "Demo point H",
+   "lat": 28.46547708509717,
+   "lon": 77.04884867252346,
+   "minute": 1121,
+   "self_report": "waist",
+   "level": 3,
+   "votes": [
+    3,
+    3,
+    3
+   ],
+   "confidence": "medium",
+   "part": "door",
+   "evidence": "water covers wheels, up doors, windows clear above waterline",
+   "reason": null,
+   "loc": {
+    "box": [
+     0.105,
+     0.12,
+     0.91,
+     0.97
+    ],
+    "waterline": [
+     0.095,
+     0.815,
+     0.915,
+     0.825
+    ]
+   },
+   "hash": 9294303730994151038,
+   "check": "consistent",
+   "dup_of": null
+  },
+  {
+   "id": "R09",
+   "path": "Level4/car-2214-Level4_7.jpg",
+   "true_level": 4,
+   "place": "Demo point I",
+   "lat": 28.455931866999396,
+   "lon": 77.05399417028148,
+   "minute": 1146,
+   "self_report": "waist",
+   "level": 3,
+   "votes": [
+    3,
+    3,
+    3
+   ],
+   "confidence": "medium",
+   "part": "door",
+   "evidence": "waterline across mid-door below side window tyres not visible",
+   "reason": null,
+   "loc": {
+    "box": [
+     0.075,
+     0.33,
+     0.99,
+     0.985
+    ],
+    "waterline": [
+     0.0,
+     0.765,
+     0.365,
+     0.705
+    ]
+   },
+   "hash": 4540222402146660592,
+   "check": "consistent",
+   "dup_of": null
+  },
+  {
+   "id": "R10",
+   "path": "Level4/car-2214-Level4_6.jpg",
+   "true_level": 4,
+   "place": "Demo point J",
+   "lat": 28.443518738258014,
+   "lon": 77.01013212565171,
+   "minute": 1080,
+   "self_report": "above waist",
+   "level": null,
+   "votes": [
+    null,
+    null,
+    3
+   ],
+   "confidence": "high",
+   "part": "door",
+   "evidence": "muddy water submerges doors below side windows roof clear",
+   "reason": "readings disagree (None, None, 3)",
+   "loc": {
+    "box": null,
+    "waterline": null
+   },
+   "hash": 18446684150327998973,
+   "check": "unverified",
+   "dup_of": null
+  },
+  {
+   "id": "R11",
+   "path": "Level3/car-1665-Level3_59.jpg",
+   "true_level": 3,
+   "place": "Demo point K",
+   "lat": 28.46924697191342,
+   "lon": 77.02318639052797,
+   "minute": 1115,
+   "self_report": "waist",
+   "level": null,
+   "votes": [
+    null,
+    null,
+    null
+   ],
+   "confidence": null,
+   "part": null,
+   "evidence": null,
+   "reason": "vehicle or waterline not visible",
+   "loc": {
+    "box": null,
+    "waterline": null
+   },
+   "hash": 2238041689351025511,
+   "check": "unverified",
+   "dup_of": null
+  },
+  {
+   "id": "R12",
+   "path": "Level3/car-1665-Level3_33.jpg",
+   "true_level": 3,
+   "place": "Demo point L",
+   "lat": 28.46964697191342,
+   "lon": 77.02348639052796,
+   "minute": 1135,
+   "self_report": "knee",
+   "level": null,
+   "votes": [
+    null,
+    null,
+    null
+   ],
+   "confidence": null,
+   "part": null,
+   "evidence": null,
+   "reason": "vehicle or waterline not visible",
+   "loc": {
+    "box": null,
+    "waterline": null
+   },
+   "hash": 18230280485832090099,
+   "check": "unverified",
+   "dup_of": "R11"
+  }
+ ]
+}

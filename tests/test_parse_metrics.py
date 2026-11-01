@@ -31,3 +31,15 @@ def test_metrics():
     assert s["coverage"] == 5 / 6 and s["selective_accuracy"] == 4 / 5
     assert s["off_by_2plus"] == 1 and s["under_by_2plus"] == 1
     assert abs(macro_f1([0, 1], [0, 1], labels=[0, 1]) - 1.0) < 1e-9
+
+
+def test_assess_vote_logic(monkeypatch):
+    from flood_triage import agent
+    replies = iter(["LEVEL=3; EVIDENCE=door", "LEVEL=X; EVIDENCE=blur", "LEVEL=3; EVIDENCE=door sill"])
+    monkeypatch.setattr(agent, "_fewshot_call", lambda b, p: {"content": next(replies)})
+    a = agent.assess(b"x", max_workers=1)
+    assert a.level == 3 and a.reason is None
+    replies2 = iter(["LEVEL=X; EVIDENCE=too dark", "LEVEL=X; EVIDENCE=too dark", "LEVEL=1; EVIDENCE=tyre"])
+    monkeypatch.setattr(agent, "_fewshot_call", lambda b, p: {"content": next(replies2)})
+    a = agent.assess(b"x", max_workers=1)
+    assert a.level is None and a.reason == "too dark"

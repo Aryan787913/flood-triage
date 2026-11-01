@@ -32,23 +32,36 @@ class Assessment:
     raw: list = field(default_factory=list)
 
 
-def assess(image_bytes, samples=3, prompt=prompts.STRUCTURED, max_workers=3):
-    """Self-consistency: `samples` independent reads; unanimous or majority answer, else can't tell."""
+def _fewshot_call(image_bytes, prompt):
+    from . import fewshot, data
+    import os
+    content = [{"type": "text", "text": prompts.FEWSHOT_INTRO}]
+    for p in fewshot.pick_examples():
+        content += [{"type": "text", "text": f"Example: level {p.split('Level')[1][0]}"},
+                    client.image_part(os.path.join(data.DATA_ROOT, p))]
+    content += [{"type": "text", "text": "Now the photo to classify:"}, client.image_part(image_bytes),
+                {"type": "text", "text": prompt}]
+    return client.chat([{"role": "user", "content": content}])
+
+
+def assess(image_bytes, samples=3, prompt=prompts.STRUCTURED, max_workers=3, fewshot=True):
+    """Few-shot (5 reference crops) + self-consistency: `samples` independent reads; majority answer, else can't tell."""
     import concurrent.futures as cf
+    call = (lambda _: _fewshot_call(image_bytes, prompt)) if fewshot else (lambda _: client.classify(image_bytes, prompt))
     with cf.ThreadPoolExecutor(max_workers) as ex:
-        outs = list(ex.map(lambda _: client.classify(image_bytes, prompt), range(samples)))
+        outs = list(ex.map(call, range(samples)))
     parsed = [parse.parse_reply(o["content"]) for o in outs]
     votes = [p["level"] if p["ok"] else None for p in parsed]
     c = Counter(v for v in votes if v is not None)
     level = None; reason = None
-    if c:
-        top, n = c.most_common(1)[0]
-        if n > samples / 2:
-            level = top
-        else:
-            reason = f"readings disagree ({', '.join(str(v) for v in votes)})"
-    else:
+    n_abstain = sum(1 for v in votes if v is None)
+    top, n = c.most_common(1)[0] if c else (None, 0)
+    if n > samples / 2:
+        level = top
+    elif n_abstain > samples / 2:
         reason = next((p["evidence"] for p in parsed if p["abstain"] and p["evidence"]), "vehicle or waterline not visible")
+    else:
+        reason = "readings disagree (" + ", ".join("X" if v is None else str(v) for v in votes) + ")"
     best = next((p for p in parsed if p["level"] == level and level is not None), None) or next((p for p in parsed if p["ok"]), {})
     return Assessment(level=level, votes=votes, confidence=best.get("confidence"), part=best.get("part"),
                       evidence=best.get("evidence"), reason=reason, raw=[o["content"] for o in outs])

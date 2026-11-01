@@ -69,7 +69,7 @@ def check_photo(img, self_report):
     chk = agent.self_report_check(self_report, a.level) if self_report else None
     return overlay.draw(b, loc), badge(a.level, a.reason), evidence_md(a.__dict__, chk)
 
-with gr.Blocks(title="flood-triage", theme=gr.themes.Soft()) as demo:
+with gr.Blocks(title="flood-triage") as demo:
     gr.Markdown("# flood-triage\nTriage for citizen flood reports with **Muse Spark Open** (Meta, open weights). "
                 "Each photo gets a flood level relative to vehicle parts (L0-L4) or *can't tell*, with evidence. "
                 "Decision support for a human ward officer: no depths in cm, no routes, no public warnings.")
@@ -104,4 +104,4 @@ with gr.Blocks(title="flood-triage", theme=gr.themes.Soft()) as demo:
         gr.Markdown(open("docs/how_it_works.md").read() if os.path.exists("docs/how_it_works.md") else "See README.")
 
 if __name__ == "__main__":
-    demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7860)))
+    demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7860)), theme=gr.themes.Soft())

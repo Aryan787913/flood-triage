@@ -18,7 +18,7 @@ def image_part(path_or_bytes, mime="image/jpeg"):
     return {"type": "image_url", "image_url": {"url": f"data:{mime};base64," + base64.b64encode(b).decode()}}
 
 
-def chat(messages, max_tokens=4000, temperature=None, retries=3, timeout=180):
+def chat(messages, max_tokens=4000, temperature=None, retries=3, timeout=120):
     """Return dict(content, reasoning_tokens?, usage, latency_s). Spark always reasons: keep max_tokens >= 4000."""
     body = {"model": MODEL, "max_tokens": max_tokens, "messages": messages}
     if temperature is not None:
