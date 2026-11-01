@@ -1,0 +1,184 @@
+1
+00:00:00,000 --> 00:00:03,664
+Every monsoon, Indian cities ask citizens to send flood
+
+2
+00:00:03,664 --> 00:00:04,131
+photos.
+
+3
+00:00:04,671 --> 00:00:08,087
+Gurugram's flood portal even asks people to guess the water
+
+4
+00:00:08,087 --> 00:00:09,071
+depth themselves.
+
+5
+00:00:09,533 --> 00:00:13,291
+That means hundreds of photos and guesses, and someone has to
+
+6
+00:00:13,291 --> 00:00:15,570
+decide which street needs help first.
+
+7
+00:00:16,056 --> 00:00:17,523
+This is flood-triage.
+
+8
+00:00:18,005 --> 00:00:21,829
+It reads each photo using Meta's open-weight model, Muse Spark
+
+9
+00:00:21,829 --> 00:00:25,468
+Open, and ranks the reports worst first, so an officer sees
+
+10
+00:00:25,468 --> 00:00:27,257
+the deepest water at the top.
+
+11
+00:00:27,928 --> 00:00:28,568
+Here's a report.
+
+12
+00:00:28,958 --> 00:00:32,199
+Instead of guessing centimetres, it judges the water against
+
+13
+00:00:32,199 --> 00:00:33,009
+the car itself:
+
+14
+00:00:33,567 --> 00:00:36,676
+below the tyre, up to the door, or above the windows.
+
+15
+00:00:37,114 --> 00:00:38,366
+Levels zero to four.
+
+16
+00:00:38,874 --> 00:00:40,000
+It shows its evidence:
+
+17
+00:00:40,430 --> 00:00:43,290
+where it found the vehicle and where the waterline touches it.
+
+18
+00:00:43,774 --> 00:00:47,538
+And when a photo is too dark, blurry or has no vehicle, it
+
+19
+00:00:47,538 --> 00:00:51,562
+says can't tell and sends it to a person, instead of guessing.
+
+20
+00:00:52,040 --> 00:00:53,193
+Now the whole queue.
+
+21
+00:00:53,687 --> 00:00:56,431
+Reports are sorted by severity and shown on a map.
+
+22
+00:00:56,978 --> 00:01:00,793
+The agent also checks each citizen's own depth estimate
+
+23
+00:01:00,793 --> 00:01:04,747
+against the photo, flags the ones that don't match, spots
+
+24
+00:01:04,747 --> 00:01:08,701
+possible duplicates, and drafts a short note for the ward
+
+25
+00:01:08,701 --> 00:01:09,256
+officer.
+
+26
+00:01:09,649 --> 00:01:11,178
+The officer stays in charge.
+
+27
+00:01:11,555 --> 00:01:12,238
+This is a triage hint, not a warning.
+
+28
+00:01:12,752 --> 00:01:16,881
+We tested it on 340 held-out photos from a public flooded-car
+
+29
+00:01:16,881 --> 00:01:20,806
+dataset, tuning only on the validation set and scoring the
+
+30
+00:01:20,806 --> 00:01:21,754
+test set once.
+
+31
+00:01:22,125 --> 00:01:26,292
+A standard image classifier scored 0.619 macro F1.
+
+32
+00:01:26,751 --> 00:01:31,213
+Our hybrid, where the classifier handles easy photos and Spark
+
+33
+00:01:31,213 --> 00:01:34,163
+decides the uncertain ones, scored 0.647.
+
+34
+00:01:34,606 --> 00:01:39,053
+More importantly, it cut the dangerous mistakes, being off by
+
+35
+00:01:39,053 --> 00:01:41,531
+two levels or more, from 29 to 17.
+
+36
+00:01:42,010 --> 00:01:45,601
+Spark on its own makes even fewer of those, but it tends to
+
+37
+00:01:45,601 --> 00:01:47,913
+call water one level lower than it is.
+
+38
+00:01:48,302 --> 00:01:51,876
+It doesn't measure depth in centimetres, vehicle sizes vary,
+
+39
+00:01:51,876 --> 00:01:54,199
+and it was mostly tested on car photos.
+
+40
+00:01:54,588 --> 00:01:58,164
+We also found the dataset's official split reuses the same
+
+41
+00:01:58,164 --> 00:02:00,691
+source photos, and we report that openly.
+
+42
+00:02:01,138 --> 00:02:04,420
+Because Spark is open weight, a city can run it on its own
+
+43
+00:02:04,420 --> 00:02:06,796
+servers and keep citizens' photos private.
+
+44
+00:02:07,390 --> 00:02:08,135
+flood-triage.
+
+45
+00:02:08,532 --> 00:02:11,671
+Built during the hackathon, code and results on GitHub.
+
+46
+00:02:12,209 --> 00:02:13,046
+Thanks for watching.
+

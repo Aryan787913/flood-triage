@@ -18,8 +18,9 @@ It is decision support for the people who already run civic flood portals (for e
 | Spark few-shot x3 (majority) | 0.589 | 0.553 | 0.84 | 0.655 | 4 | 2 |
 | Hybrid (baseline + Spark) | 0.647 | 0.641 | 1.00 | 0.641 | 17 | 9 |
 | Learned stack (secondary, fit on val) | 0.658 | 0.659 | 1.00 | 0.659 | 17 | 7 |
+| Hybrid on the leak-free grouped baseline (same rule, t=0.70) | 0.633 | – | 1.00 | – | 17 | 10 |
 
-Few-shot Spark alone (0.603) beats the leakage-free baseline (0.580) with far fewer gross errors. The hybrid scores 0.647 and cuts gross errors from 29 to 17. Caveats: the official split leaks source photos (232/340 test crops share a source photo with train/val); self-consistency helped on val but not on test; hybrid abstention is not better than baseline-confidence abstention below 90% coverage. All tuning was on val; test was scored once.
+Few-shot Spark alone (0.603) beats the leakage-free baseline (0.580) with far fewer gross errors. The hybrid scores 0.647 and cuts gross errors from 29 to 17. On the leak-free grouped baseline the same rule (threshold not re-tuned) scores 0.633 vs 0.580 and cuts gross errors from 35 to 17. Caveats: the official split leaks source photos (232/340 test crops share a source photo with train/val); self-consistency helped on val but not on test; hybrid abstention is not better than baseline-confidence abstention below 90% coverage. All tuning was on val; test was scored once.
 
 ![summary](results/charts/test_summary.png)
 
@@ -42,7 +43,7 @@ Qualitative only (no labels): 20 Wikimedia Commons street photos from Chennai, M
 - Spark systematically under-calls by one level (L2->L1, L4->L3).
 - Zero-shot abstains on blurry or small crops.
 - Levels are relative to vehicle parts, not centimetres.
-- Hybrid uses the official (leaky) baseline; the grouped-baseline hybrid is not yet reported.
+- The headline hybrid uses the official (leaky) baseline; the grouped-baseline hybrid (0.633) is the fairer number.
 - Latency ~15 s per few-shot call.
 
 ## Responsible use
@@ -50,7 +51,7 @@ Qualitative only (no labels): 20 Wikimedia Commons street photos from Chennai, M
 - Levels are relative to vehicle parts; vehicle heights vary (two-wheelers, buses, SUVs).
 - "Can't tell" is a feature: blurry, dark or vehicle-less photos go to a person instead of getting a guess.
 - Demo locations, times and citizen estimates are synthetic. Do not use real citizens' photos or locations without consent; strip EXIF before storing.
-- Model calls go to Baseten (zero data retention by default per Baseten); the open weights can also be self-hosted for a city that cannot send photos to a third party.
+- In this demo, photos are sent to Baseten's hosted API; a city should review the provider's data policy before sending citizen photos, or self-host the open weights.
 
 ## How to run
 ```bash
@@ -72,7 +73,8 @@ Everything in this repository: the Spark client and prompts, the answer parser, 
 - **Dataset:** STURM-FloodDepth Flooded Cars, N. Notarangelo / WEO, Zenodo doi:10.5281/zenodo.14833532, CC BY 4.0; derived from the flooded vehicle dataset of Wan et al. 2024 (github.com/ywszxdd/original_dataset, *Automatic detection of urban flood level with YOLOv8 using flooded vehicle dataset*, J. Hydrology). Level definitions from the STURM-FloodDepth paper.
 - **Robustness photos:** Wikimedia Commons, authors and licences listed in docs/robustness.md.
 - **SAM 3.1** (Meta): not used (Hugging Face access to facebook/sam3.1 not granted); overlays are Spark-described vehicle box and waterline.
-- **Libraries:** OpenCLIP (CLIP ViT-B/16 OpenAI weights), PyTorch, scikit-learn, Gradio, Plotly, Pillow, matplotlib, edge-tts (video voiceover), ffmpeg.
+- **Libraries:** OpenCLIP (CLIP ViT-B/16 OpenAI weights), PyTorch, scikit-learn, Gradio, Plotly, Pillow, matplotlib, ffmpeg, Playwright + Chromium (app screenshots for the video)
+- **Demo video narration:** AI-generated voice (ElevenLabs) reading a script written for this project; all screens are the real app, code and results.
 - **Prior art (not novel claims):** STURM-FloodDepth ResNet50 classifier on the same data; FloodLlama (Mar 2026); GPT-4V flood-depth studies (2024). This project's contribution is the evidence + abstention + triage workflow around an open-weight model, and an honest comparison.
 
 ## License
